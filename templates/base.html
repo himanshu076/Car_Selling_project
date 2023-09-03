@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.6">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sign-in/">
+
+  <meta name="theme-color" content="#563d7c">
+
+  <title>{% block title %}{% endblock title %}</title>
+
+  {% load static %}
+
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+
+</head>
+<style>
+  {% block style %}
+
+  {% endblock style %}
+</style>
+
+<body class="text-center">
+
+  {% block navbar %}
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">Dodgy Brothers</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link {% if nbar == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          {% comment %} <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="">Create Group</a>
+          </li> {% endcomment %}
+
+          {% comment %} {% if not request.user.is_authenticated %} {% endcomment %}
+          <li class="nav-item">
+            <a class="nav-link {% if nbar == 'list_your_car' %}active{% endif %}" aria-current="page" href="{% url 'car_register' %}">List Your Car</a>
+          </li>
+          {% comment %} {% endif %} {% endcomment %}
+          {% comment %} <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{% url 'home' %}">About Us</a>
+          </li> {% endcomment %}
+
+        </ul>
+        <ul class="navbar-nav justify-content-md-end me-5 mb-2 mb-md-0">
+        <li class="nav-item ">
+          <a class="nav-link active_deactive">
+            {% if request.user.is_authenticated %}
+            Welcome | {{user.username}}
+            {% endif %}
+            </a>
+        </li>
+
+        {% if not request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">| </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Register</a>
+        </li>
+
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">logout</a>
+        </li>
+        {%endif%}
+      </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+  {% endblock navbar %}
+
+
+
+
+  {% block content %}  {% endblock content %}
+
+  {% block footer %} 
+  <footer class="text-muted py-5 only-footer">
+    <hr>
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+      {% comment %} <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+      <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.1/getting-started/introduction/">getting started guide</a>.</p> {% endcomment %}
+      <br>
+      <p class="mb-1">&copy; 2020-2023 Dodgy Brothers - Indore, India, Inc. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  {% endblock footer %}
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <script>
+      {% block script %}{% endblock script %}
+    </script>
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+
+  <script type="text/javascript">
+    let alert_list = document.querySelectorAll('.time')
+    alert_list.forEach(function(alert) {
+        new bootstrap.Alert(alert);
+
+        let alert_timeout = alert.getAttribute('data-timeout');
+        setTimeout(() => {
+            bootstrap.Alert.getInstance(alert).close();
+        }, +alert_timeout);
+    });
+
+    
+  </script>
+</body>
+
+</html>

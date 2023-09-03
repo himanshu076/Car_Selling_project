@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock title %}
+
+{% block style %}
+
+body {
+    padding-top: 0px;
+}
+
+.py-5 {
+    padding-top: 0rem!important;
+    padding-bottom: 0rem!important;
+}
+
+.only-footer {
+    padding-top: 2rem!important;
+    padding-bottom: 2rem!important;
+}
+
+.album {
+    padding-top: 2rem!important;
+    padding-bottom: 2rem!important;
+}
+
+
+.py-lg-5 {
+    padding-top: 1rem!important;
+    padding-bottom: 0rem!important;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0rem;
+}
+
+.text-text{
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.mx-5 {
+  margin-right: 7rem!important;
+  margin-left: 7rem!important;
+}
+
+
+{% endblock style %}
+
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+  {% if "visited" in message.tags %}
+  {% else %}
+    <div class="alert alert-info alert-dismissible fade show text-start time" data-timeout="7000" role="alert">
+      Message: {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endif %}
+{% endfor %}
+{% endif %}
+
+<main>
+
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Dodgy Brothers</h1>
+          <p class="lead text-muted">Dodgy Brothers presents you an online platform a way through you can sell and purchase second hand cars here.</p>
+          {% if per_page_car.number == 1 %}
+            {% if messages %}
+              {% for message in messages %}
+                {% if "visited" in message.tags %}
+                  <div class="alert alert-light mx-5 alert-dismissible fade show once_on_visit" data-timeout="7000" role="alert">
+                    {% comment %} <strong>Thank You! </strong>  for visiting website {% endcomment %}
+                    {% comment %} <strong>{{ message|slice:":11" }} </strong> {{ message|slice:"12:" }} {% endcomment %}
+                    {{ message|safe}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% else %}                  
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endif %}
+          {% comment %} <p>
+            <a href="#" class="btn btn-primary my-2">Contact With Us</a>
+            <a href="#" class="btn btn-secondary my-2">Dodgy History</a>
+          </p> {% endcomment %}
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {% comment %} {{all_car_list}} {% endcomment %}
+          {% for cars in per_page_car %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" >
+              <image preserveAspectRatio="xMidYMid slice" width="100%" height="225" href="{{cars.images}}" alt="Unable to Load Image">
+            </svg>
+              <div class="card-body">
+                <p class="card-text">{{cars.car_title}} </p>
+                <p class="card-text text-text">{{cars.make}}-{{cars.model}}- {{cars.year}}, Car Condition- {{cars.condition}}</p>
+                {% comment %} <p class="card-text text-text">Make - {{cars.make}} </p> {% endcomment %}
+                <p class="card-text text-text">Available at just- {{cars.vehicle_price}} </p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'contact' %}">Buy</a>
+
+                    <!-- Button trigger modal -->
+                    <a type="button" data-id="{{cars.id}}" class="btn btn-sm btn-outline-secondary car-data-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</a>
+
+                    <!-- Modal -->
+                    <div class="modal fade modal-fullscreen-xl-down" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <!-- Your Details page data showing  in modal -->
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <small class="text-muted">{{cars.pub_date|timesince}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+        <div class="my-3 ">
+          {% if per_page_car.has_other_pages %}
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end">
+              {% if per_page_car.has_previous %}
+              <li class="page-item ">
+                <a class="page-link" href="?page=1">&laquo; &laquo; First</a>
+              </li>
+              <li class="page-item ">
+                <a class="page-link" href="?page={{ per_page_car.previous_page_number }}">&laquo; Previous</a>
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <span class="page-link" >Previous</span>
+              </li>
+              {% endif %}
+
+              {% for p in per_page_car.paginator.page_range %}
+              {% if per_page_car.number == p %}
+                <li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ p }}</a></li>
+              {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+              {% endif %}
+              {% endfor %}
+
+              {% if per_page_car.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ per_page_car.next_page_number }}">Next &raquo;</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="?page={{ per_page_car.paginator.num_pages }}">Last &raquo; &raquo;</a>
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <span class="page-link" aria-hidden="true">Next</span>
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+    
+
+  </main>
+
+
+
+{% endblock content %}
+
+
+{% block script %}
+  $(document).on('click','.car-data-modal',function(){
+    {% comment %} debugger {% endcomment %}
+    var id = $(this).data('id');
+    console.log(id)
+
+    $.ajax({
+        url:'{% url 'modal_data' %}',
+        type:'GET',
+        dataType:'html',
+        data:{
+            'id':id,
+            {% comment %} 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(), {% endcomment %}
+        },
+        success: function(html_response){
+          $(".modal-content").html(html_response);
+        }
+
+    });
+  });
+{% endblock script %}

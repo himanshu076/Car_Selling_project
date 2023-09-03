@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block navbar %}{% endblock navbar %}
+
+{% block style %}
+
+.lead {
+    text-align: left;
+    font-size: 1rem;
+}
+
+{% endblock style %}
+
+{% block content %}
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{all_car.car_title}}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+
+    <main>
+
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+          </div>
+          <div class="carousel-inner">
+            {% if all_car.images %}
+            <div class="carousel-item active">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="325" >
+                <image preserveAspectRatio="xMidYMid slice" width="100%" height="325" href="{{all_car.images}}" alt="Unable to Load Image">
+              </svg>
+            </div>
+            {% endif %}
+            {% if all_car.images_1 %}
+            <div class="carousel-item">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="325" >
+                <image preserveAspectRatio="xMidYMid slice" width="100%" height="325" href="{{all_car.images_1}}" alt="Unable to Load Image">
+              </svg>
+            </div>
+            {% endif %}
+            {% if all_car.images_2 %}
+            <div class="carousel-item">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="325" >
+                <image preserveAspectRatio="xMidYMid slice" width="100%" height="325" href="{{all_car.images_2}}" alt="Unable to Load Image">
+              </svg>
+            </div>
+            {% endif %}
+            {% if all_car.images_3 %}
+            <div class="carousel-item">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="325" >
+                <image preserveAspectRatio="xMidYMid slice" width="100%" height="325" href="{{all_car.images_3}}" alt="Unable to Load Image">
+              </svg>
+            </div>
+            {% endif %}
+            {% if all_car.images_4 %}
+            <div class="carousel-item">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="325" >
+                <image preserveAspectRatio="xMidYMid slice" width="100%" height="325" href="{{all_car.images_4}}" alt="Unable to Load Image">
+              </svg>
+            </div>
+          </div>
+          {% endif %}
+          <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <!-- Marketing messaging and featurettes
+        ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+
+        <div class="container marketing">
+
+          <!-- START THE FEATURETTES -->
+
+          <hr class="featurette-divider">
+
+          <div class="row featurette">
+              <h2 class="featurette-heading">{{all_car.car_title}}.</h2>
+              <hr class="featurette-divider">
+              <p class="lead">Make - {{all_car.make}}<br>
+                            Model - {{all_car.model}}<br>
+                            Year - {{all_car.year}}<br>
+                            Vehicle Condition - {{all_car.condition}}<br>
+                            Vehicle - {{all_car.vehicle_availablity}}<br>
+                            Vehicle Price - {{all_car.vehicle_price}}<br>
+                            Article Published - {{all_car.pub_date}}
+              </p>
+          </div>
+
+
+
+          <!-- /END THE FEATURETTES -->
+        </div><!-- /.container -->
+    </main>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+</div>
+
+</div>
+      {% endblock content %}

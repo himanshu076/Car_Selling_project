@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+body {
+    align-items: center;
+    padding-top: 0px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+}
+
+.row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * 5.5);
+    padding-left: calc(var(--bs-gutter-x) * 5.5);
+    margin-top: var(--bs-gutter-y);
+}
+
+.mb-3 {
+    padding: 1rem;
+}
+
+.g-3, .gy-3 {
+    --bs-gutter-y: .2rem;
+}
+
+button {
+
+}
+
+{% endblock style %}
+
+{% block content %}
+
+<div class="container">
+    <main>
+
+
+
+       
+     
+{% comment %} 
+        images = 
+        images_1 =
+        images_2 =
+        images_3 =
+        images_4 =
+
+        year = 
+        condition =
+        vehicle_availablity =
+        vehicle_price = {% endcomment %}
+
+      <div class="row g-5">
+        <div class="col-mx-7">
+          <h4 class="mb-3">Register Your Car</h4>
+          <form method="POST" class="needs-validation" validate>
+              {% csrf_token %}
+              
+              <div class="row g-3">
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="firstName" name="car_title" placeholder="Title" value="" required>
+                
+              </div>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="username" name="username" placeholder="UserName" value="" required>
+              </div>
+
+              <div class="col-sm-12">
+                <input class="form-control" type="file" name="image" id="formFile">
+              </div>
+              <div class="col-sm-12">
+                <input class="form-control" type="file" name="image_1" id="formFile">
+              </div>
+              <div class="col-sm-12">
+                <input class="form-control" type="file" name="image_2" id="formFile">
+              </div>
+              <div class="col-sm-12">
+                <input class="form-control" type="file" name="image_3" id="formFile">
+              </div>
+              <div class="col-sm-12">
+                <input class="form-control" type="file" name="image_4" id="formFile">
+              </div>
+
+
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="make" name="make" placeholder="Make" required>
+              </div>
+
+              <div class="col-12">
+                <input type="text" class="form-control" id="model" name="model" placeholder="Model" required>
+              </div>
+
+              <div class="col-12">
+                <input type="text" minlength="10" class="form-control" name="mobile_no" id="mobile_no" placeholder="Mobile Number" required>
+              </div>
+
+              <div class="col-12">
+                <input type="text" class="form-control" id="registration" name="registration_no" placeholder="Registration Number" required>
+              </div>
+
+              <div class="col-12">
+                <select class="form-select" name="year" aria-label="Default select example">
+                    {% comment %} <option hidden>Select Year</option>     {% endcomment %}
+                    {% for year in select_year %}
+                    <option>{{year}}</option>
+                    {% endfor %}
+                  </select>
+              </div>
+
+              <div class="col-12">
+                <select class="form-select" name="condition" aria-label="Default select example">
+                    <option hidden>Vehicle Condition</option>
+                    {% for conditions in vehicle_condition %}
+                    <option>{{conditions}}</option>
+                    {% endfor %}
+                  </select>
+              </div>
+
+              <div class="col-12">
+                <input type="text" class="form-control" id="vehicle_availablity" name="vehicle_availablity" placeholder="Vehicle Availablity" required>
+              </div>
+
+              <div class="col-12">
+                <input type="text" class="form-control" id="vehicle_price" name="vehicle_price" placeholder="Vehicle Price" required>
+              </div>
+            </div>
+
+            <button class="float-start text-left w-25 btn btn-primary btn-lg mt-3" type="submit" style='margin-left:5rem'>submit</button>
+
+          </form>
+        </div>
+      </div>
+    </main>
+
+    
+  </div>
+
+
+{% endblock content %}
+
+{% block script %}{% endblock script %}

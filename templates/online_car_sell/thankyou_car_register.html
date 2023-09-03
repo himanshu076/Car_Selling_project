@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block navbar %}{% endblock navbar %}
+
+{% block style %}
+
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+
+  </style>
+
+{% endblock style %}
+
+{% block content %}
+<div class="  d-flex h-100 text-center text-white bg-dark">
+
+
+<div class="cover-container justify-content-center d-flex w-100 h-100 p-3 mx-auto flex-column">
+<main class="px-3">
+    <h1>Thank You! for registered your car.</h1>
+    <p class="lead">Thank You! Your car has beed registered. Please visit home page.</p>
+    <p class="lead">
+      <a href="{% url 'home' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-dark">Visit Homepage</a>
+    </p>
+  </main>
+</div>
+
+</div>
+
+{% endblock content %}
+
+{% block script %}{% endblock script %}
