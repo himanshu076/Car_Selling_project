@@ -141,7 +141,7 @@ zipcode: {zipcode}
 Thanks & Regards,
 Dodgy Brothers Team
 '''
-        from_email = "himanshu.himanshu76@gmail.com"
+        from_email = "test@gmail.com"
         if subject and message and from_email:
             try:
                 send_mail(subject, message, from_email,
